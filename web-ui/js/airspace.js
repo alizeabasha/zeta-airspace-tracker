@@ -18,6 +18,11 @@
 var geojsonloader = new OpenLayers.Format.GeoJSON();
 var inter_vectors = new OpenLayers.Layer.Vector("INTERSECTION");
 
+function displayIntersection(map, intersection) {
+  var features = geojsonloader.read(intersection);
+  inter_vectors.addFeatures(features);
+  map.addLayers([inter_vectors]);
+}
 
 function displayAirspace(map, aspaces){
             var report = function(e) {
