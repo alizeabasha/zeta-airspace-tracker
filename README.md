@@ -1,2 +1,2 @@
-# zeta-airspace-tracker
+# Zeta Airspace Tracker
  ADS-B flight tracking.
