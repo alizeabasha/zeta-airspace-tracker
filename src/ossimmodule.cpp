@@ -48,7 +48,28 @@ get_elevation(double lat, double lon){
 }
 
 
+static PyObject *
+ossim_init(PyObject *self, PyObject *args)
+{
+  char *pref_file;
 
+  if (!PyArg_ParseTuple(args, "s", &pref_file))
+        return NULL;
+
+  char *argv[] = {"ossim-height", "-P", pref_file};
+  int argc = 3;
+
+  ossimArgumentParser argumentParser(&argc, argv);
+
+  ossimInit::instance()->addOptions(argumentParser);
+
+  ossimInit::instance()->initialize(argumentParser);
+
+  argumentParser.getApplicationUsage()->setApplicationName(
+    argumentParser.getApplicationName());
+  
+  Py_RETURN_NONE;
+}
 
 
 static PyObject *
